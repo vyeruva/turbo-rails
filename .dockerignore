@@ -1,0 +1,6 @@
+log/*
+tmp/*
+node_modules
+vendor/bundle
+.bundle
+.byebug_history

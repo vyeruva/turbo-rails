@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: quote_editor_development
+    ports:
+      - "15432:5432"   # host 15432 → container 5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - .:/app            # live-sync code
+    ports:
+      - "4001:4001"     # host 4001 → container 4001
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/quote_editor_development
+      RAILS_ENV: development
+    command: ["rails", "server", "-b", "0.0.0.0", "-p", "4001"]
+
+volumes:
+  db-data:
