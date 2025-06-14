@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Commands
+
+docker-compose up
+
+docker exec -it  quote-editor-web-1 bash
