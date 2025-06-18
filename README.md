@@ -28,3 +28,5 @@ Commands
 docker-compose up
 
 docker exec -it  quote-editor-web-1 bash
+
+RAILS_ENV=development bin/rails assets:precompile
