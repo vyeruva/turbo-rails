@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: quote_editor_development
     ports:
-      - "15432:5432"   # host 15432 → container 5432
+      - "15433:5432"   # host 15433 → container 5432
     volumes:
       - db-data:/var/lib/postgresql/data
 
