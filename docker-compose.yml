@@ -12,19 +12,29 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
   web:
     build: .
     shm_size: '256mb'
     depends_on:
       - db
+      - redis
     volumes:
       - .:/app            # live-sync code
     ports:
       - "4001:4001"     # host 4001 → container 4001
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/quote_editor_development
+      REDIS_URL: redis://redis:6379/1
       RAILS_ENV: development
     command: ["rails", "server", "-b", "0.0.0.0", "-p", "4001"]
 
 volumes:
   db-data:
+  redis-data:
