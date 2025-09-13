@@ -34,3 +34,5 @@ RAILS_ENV=development bin/rails assets:precompile
 rails test
 
 rails test:system
+
+chmod 777 $(git diff --name-only)
